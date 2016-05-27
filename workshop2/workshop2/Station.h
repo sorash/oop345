@@ -17,5 +17,9 @@ namespace w2
 	public:
 		Station();
 		Station(istream& is);
+		void update();
+		void restock();
+		void report();
+		void write(ostream& os);
 	};
 }

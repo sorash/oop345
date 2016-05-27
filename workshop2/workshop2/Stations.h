@@ -13,11 +13,14 @@ namespace w2
 	{
 		int stationCount;
 		Station* stationTable;
+		char* file;
 	public:
 		Stations(char* fileName);
 
 		void update();
 		void restock();
-		void report();
+		void report(); 
+
+		~Stations();
 	};
 }

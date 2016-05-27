@@ -10,14 +10,56 @@ Station::Station()
 Station::Station(istream& is)
 {
 	string line;
-	getline(is, line);
-	cout << "Station(...) read -->" << line << "<--" << endl;
 
-	stringstream ss(line);
-	// ss >> stationName;	// does not work with words delimited by spaces
-	getline(ss, stationName, ';');	// reads even with space delimiters
+	getline(is, line, ';');		// get name of the station
+	stationName = line;
 
-	ss >> passes[STUDENT_PASS];
-	ss >> passes[ADULT_PASS];
-	cout << "stationName, student, adult = " << stationName << ", " << passes[STUDENT_PASS] << ", " << passes[ADULT_PASS] << endl;
+	is >> passes[STUDENT_PASS];//number of student passes
+	is.ignore();
+
+	is >> passes[ADULT_PASS];//number of adult passes
+	is.ignore();
+}
+
+void Station::update() 
+{
+	int count;
+
+	cout << stationName << "\n";
+	cout << " Student Passes sold : ";
+	cin >> count;
+	passes[STUDENT_PASS] -= count;
+
+	cout << " Adult   Passes sold : ";
+	cin >> count;
+	passes[ADULT_PASS] -= count;
+}
+
+void Station::restock() 
+{
+	int count;
+
+	cout << stationName << "\n";
+	cout << " Student Passes added : ";
+	cin >> count;
+	passes[STUDENT_PASS] += count;
+
+	cout << " Adult   Passes added : ";
+	cin >> count;
+	passes[ADULT_PASS] += count;
+}
+
+void Station::report() 
+{
+	cout << setw(19) << left << stationName;
+	cout << setw(6) << right << passes[STUDENT_PASS];
+	cout << setw(6) << right << passes[ADULT_PASS];
+	cout << endl;
+}
+
+void Station::write(ostream& os) 
+{
+	os << stationName << ';'
+		 << passes[STUDENT_PASS] << ' '
+		 << passes[ADULT_PASS] << endl;
 }
