@@ -19,7 +19,7 @@ Text::Text(const string fileName)
 		int count = 0;
 		string line;
 
-		// get count of lines
+		// get count of fields
 		do
 		{
 			getline(is, line, '\n');
@@ -50,13 +50,22 @@ Text::Text(const string fileName)
 // PARAM other: object being copied from
 Text::Text(const Text& other)
 {
+	// check for self-assignment
+	if (this != &other)
+	{
 
+	}
 }
 
 // copy operator=
 // PARAM other: object being copied from
 Text& Text::operator=(const Text& other)
 {
+	// check for self-assignment
+	if (this != &other)
+	{
+
+	}
 
 	return *this;
 }
