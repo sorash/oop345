@@ -34,10 +34,11 @@ Text::Text(const string fileName)
 		strings = new string[count];
 
 		// read into the array
-		for (int i = 0; !is.fail(); i++){
+		for (int i = 0; !is.fail(); i++)
 			getline(is, strings[i], '\n');
-			cout << strings[i] << endl;
-		}
+
+		// set field count
+		fieldCount = count;
 
 		// close file
 		is.close();
@@ -53,7 +54,10 @@ Text::Text(const Text& other)
 	// check for self-assignment
 	if (this != &other)
 	{
+		strings = new string[other.fieldCount + 1];
 
+		for (int i = 0; i < fieldCount; i++)
+			strings[i] = other.strings[i];
 	}
 }
 
@@ -64,7 +68,10 @@ Text& Text::operator=(const Text& other)
 	// check for self-assignment
 	if (this != &other)
 	{
+		strings = new string[other.fieldCount + 1];
 
+		for (int i = 0; i < fieldCount; i++)
+			strings[i] = other.strings[i];
 	}
 
 	return *this;
@@ -74,13 +81,28 @@ Text& Text::operator=(const Text& other)
 // PARAM other: object being moved from
 Text::Text(Text&& other)
 {
+	// check for self-assignment
+	if (this != &other)
+	{
+		strings = new string[other.fieldCount + 1];
 
+		for (int i = 0; i < fieldCount; i++)
+			strings[i] = other.strings[i];
+	}
 }
 
 // move operator=
 // PARAM other: object being moved from
 Text& Text::operator=(Text&& other)
 {
+	// check for self-assignment
+	if (this != &other)
+	{
+		strings = new string[other.fieldCount + 1];
+
+		for (int i = 0; i < fieldCount; i++)
+			strings[i] = other.strings[i];
+	}
 
 	return *this;
 }
@@ -96,6 +118,5 @@ Text::~Text()
 // returns the number of records of text data
 size_t Text::size() const
 {
-
-	return 0;
+	return fieldCount;
 }

@@ -1,16 +1,3 @@
-#include "Text.h"
-using namespace w3;
-
-int main()
-{
-	Text a("gutenberg_shakespeare");
-}
-
-
-
-
-
-/*
 // Workshop 3 - Copy and Move Semantics
 // w3.cpp
 
@@ -74,4 +61,3 @@ int main(int argc, char* argv[]) {
 	ce = std::clock();
 	std::cout << "Destructor       " << TIME(cs, ce) << " seconds\n";
 }
-*/

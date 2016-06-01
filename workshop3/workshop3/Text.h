@@ -11,6 +11,7 @@ namespace w3
 {
 	class Text
 	{
+		int fieldCount = 0;
 		string* strings;
 
 	public:
