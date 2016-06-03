@@ -6,10 +6,11 @@ Text::Text()
 {
 	// set the object to a safe empty state
 	strings = nullptr;
+	fieldCount = 0;
 }
 
 // PARAM fileName: name of text file that contains records to be stored
-Text::Text(const string fileName)
+Text::Text(const string fileName) : fieldCount(0)
 {
 	ifstream is(fileName);
 
@@ -51,27 +52,32 @@ Text::Text(const string fileName)
 // PARAM other: object being copied from
 Text::Text(const Text& other)
 {
-	// check for self-assignment
-	if (this != &other)
-	{
-		strings = new string[other.fieldCount + 1];
-
-		for (int i = 0; i < fieldCount; i++)
-			strings[i] = other.strings[i];
-	}
+	fieldCount = 0;
+	strings = '\0';
+	*this = other;
 }
 
 // copy operator=
 // PARAM other: object being copied from
 Text& Text::operator=(const Text& other)
 {
-	// check for self-assignment
-	if (this != &other)
+	if (this != &other) 
 	{
-		strings = new string[other.fieldCount + 1];
+		if (strings) 
+		{
+			delete[] strings;
+			strings = '\0';
+			fieldCount = 0;
+		}
 
-		for (int i = 0; i < fieldCount; i++)
-			strings[i] = other.strings[i];
+		if (other.strings) 
+		{
+			fieldCount = other.fieldCount;
+			strings = new string[fieldCount];
+
+			for (size_t i = 0; i < fieldCount; i++)
+				strings[i] = other.strings[i];
+		}
 	}
 
 	return *this;
@@ -81,30 +87,32 @@ Text& Text::operator=(const Text& other)
 // PARAM other: object being moved from
 Text::Text(Text&& other)
 {
-	// check for self-assignment
-	if (this != &other)
-	{
-		strings = new string[other.fieldCount + 1];
-
-		for (int i = 0; i < fieldCount; i++)
-			strings[i] = other.strings[i];
-	}
+	fieldCount = 0;
+	strings = '\0';
+	*this = move(other);
 }
 
 // move operator=
 // PARAM other: object being moved from
-Text& Text::operator=(Text&& other)
+Text&& Text::operator=(Text&& other)
 {
-	// check for self-assignment
-	if (this != &other)
+	if (this != &other) 
 	{
-		strings = new string[other.fieldCount + 1];
+		if (strings)
+		{
+			delete[] strings;
+			strings = '\0';
+			fieldCount = 0;
+		}
 
-		for (int i = 0; i < fieldCount; i++)
-			strings[i] = other.strings[i];
+		fieldCount = other.fieldCount;
+		strings = other.strings;
+
+		other.fieldCount = 0;
+		other.strings = '\0';
 	}
 
-	return *this;
+	return move(*this);
 }
 
 // destructor

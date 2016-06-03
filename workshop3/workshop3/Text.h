@@ -11,7 +11,7 @@ namespace w3
 {
 	class Text
 	{
-		int fieldCount = 0;
+		int fieldCount;
 		string* strings;
 
 	public:
@@ -24,7 +24,7 @@ namespace w3
 
 		// move constructor and operator
 		Text(Text&& other);
-		Text& operator=(Text&& other);
+		Text&& operator=(Text&& other);
 
 		~Text();
 
