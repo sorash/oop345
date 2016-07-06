@@ -16,37 +16,41 @@ Grades::Grades(const char* filePath)
 			throw "Failed to open file: " + std::string(filePath);
 
 		std::string buf;
-		char studNo[10];
 		double grade;
 
+		// get count of lines...
+		while (is.good())
+		{
+			std::getline(is, buf, '\n');
+			count++;
+		}
+
+		// reset file stream
+		is.clear();
+		is.seekg(0, std::ios::beg);
+
+		// allocate memory
+		students = new std::string[count];
+		grades = new double[count];
+
 		// read all lines
+		int i = 0;
 		while (is.good())
 		{
 			// read student number
-			std::getline(is, buf, ' ');
-			strcpy(studNo, buf.c_str());
-			students.push_back(studNo);
+			std::getline(is, students[i], ' ');
 
 			// read grade
 			std::getline(is, buf, '\n');
 			grade = atof(buf.c_str());
-			grades.push_back(grade);
+			grades[i] = grade;
+
+			i++;
 		}
 	}
 	catch (std::string err)
 	{
 		// show error message
 		std::cout << err << std::endl;
-	}
-}
-
-template<typename func>
-void Grades::displayGrades(std::ostream &os, func exp)
-{
-	auto letter = exp;
-
-	for (auto const value : students)
-	{
-		os << 
 	}
 }
