@@ -15,24 +15,38 @@ Grades::Grades(const char* filePath)
 		if (is.fail())
 			throw "Failed to open file: " + std::string(filePath);
 
-		char buf[10];
+		std::string buf;
 		char studNo[10];
 		double grade;
 
-		// read grades
-		is.getline(buf, ' ');
-		strcpy(studNo, buf);
+		// read all lines
+		while (is.good())
+		{
+			// read student number
+			std::getline(is, buf, ' ');
+			strcpy(studNo, buf.c_str());
+			students.push_back(studNo);
 
-		std::cout << studNo << std::endl;
-
-		is.getline(buf, '\r\n');
-		grade = atof(buf);
-
-		std::cout << grade << std::endl;
+			// read grade
+			std::getline(is, buf, '\n');
+			grade = atof(buf.c_str());
+			grades.push_back(grade);
+		}
 	}
 	catch (std::string err)
 	{
 		// show error message
 		std::cout << err << std::endl;
+	}
+}
+
+template<typename func>
+void Grades::displayGrades(std::ostream &os, func exp)
+{
+	auto letter = exp;
+
+	for (auto const value : students)
+	{
+		os << 
 	}
 }
