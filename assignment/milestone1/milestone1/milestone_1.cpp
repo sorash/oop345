@@ -11,7 +11,9 @@ int main(int argc, char** argv)
 	std::cout << "Tasks File Specified          = " << argv[1] << std::endl;
 	std::cout << "File Record Field Delimiter   = " << argv[2][0] << std::endl << std::endl;
 
-	TaskManager tm(argv[1]);
+	// create a new task manager
+	TaskManager tm = TaskManager(std::string(argv[1]), argv[2][0]);
+	tm.display(std::cout);
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
 	char c;

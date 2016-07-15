@@ -10,7 +10,13 @@
 
 class TaskManager
 {
-	void read(std::string& file);
+	std::vector<Task> tasks;
+	void addTask(std::vector<std::string> fields);
+
+public:
+	TaskManager(std::string& file, char delim);
+	void readCSV(std::string& file, char delim);
+	void display(std::ostream& os);
 };
 
 #endif
