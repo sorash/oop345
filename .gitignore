@@ -1,3 +1,5 @@
 [Dd]ebug/
 .vs/
 x[86][64]
+*.opendb
+*.opensdf
