@@ -11,7 +11,7 @@
 class TaskManager
 {
 	std::vector<Task> tasks;
-	void addTask(std::vector<std::string> fields);
+	void addTask(std::vector<std::string> fields, int line);
 
 public:
 	TaskManager(std::string& file, char delim);

@@ -1,5 +1,6 @@
 #include "TaskManager.h"
 #include <sstream>
+#include <algorithm>
 
 TaskManager::TaskManager(std::string& file, char delim)
 {
@@ -20,22 +21,24 @@ void TaskManager::readCSV(std::string& file, char delim)
 		{
 			std::string buf, buf2;
 			std::stringstream ss;
-			int count = 0;
+			
+			int line = 0;
+			
 			while (std::getline(is, buf))
 			{
-				count++;
+				line++;
+
 				ss << buf;
 				while (std::getline(ss, buf2, delim))
 				{
 					// remove leading and trailing white spaces
-					buf2.erase(0, buf2.find_first_not_of(' '));
-					buf2.erase(buf2.find_last_not_of(' ') + 1);
-
-					// add to tasks
-					fields.push_back(buf2);
+					buf2.erase(std::remove_if(buf2.begin(), buf2.end(), isspace), buf2.end());
+					
+					if (!buf2.empty())
+						fields.push_back(buf2);
 				}
 
-				addTask(fields);
+				addTask(fields, line);
 				fields.clear();
 
 				ss.clear();
@@ -52,7 +55,7 @@ void TaskManager::readCSV(std::string& file, char delim)
 	}
 }
 
-void TaskManager::addTask(std::vector<std::string> fields)
+void TaskManager::addTask(std::vector<std::string> fields, int line)
 {
 	int count = fields.size();
 	std::string name, slots = "0", accept = "", reject = "";
@@ -69,11 +72,11 @@ void TaskManager::addTask(std::vector<std::string> fields)
 		name = fields[0];
 		break;
 	default:
-		std::cerr << "Expected 1-4 fields for a task, found " << count << std::endl;
+		std::cerr << "Line " << line << ": expected 1-4 fields for a task, found " << count << std::endl;
 		break;
 	}
 
-	if(name != "")
+	if(!name.empty())
 		tasks.push_back(Task(name, slots, accept, reject));
 }
 
