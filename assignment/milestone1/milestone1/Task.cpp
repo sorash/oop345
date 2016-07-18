@@ -8,8 +8,26 @@ Task::Task(std::string name, std::string slots, std::string accept, std::string 
 
 void Task::display(std::ostream& os)
 {
-	os << "Name: " << name
-		<< (slots != "0" ? ", " + slots : "\n")
-		<< (!accept.empty() ? ", " + accept : "\n")
-		<< (!reject.empty() ? ", " + reject + "\n" : "\n");
+	os << "Name: " << '"' << name << '"';
+
+	if (slots != "0")
+	{
+		os << ", Slots: " << '"' << slots << '"';
+
+		if (!accept.empty())
+		{
+			os << ", Accept: " << '"' << accept << '"';
+
+			if (!reject.empty())
+			{
+				os << ", Reject: " << '"' << reject << '"' << std::endl;
+			}
+			else
+				os << std::endl;
+		}
+		else
+			os << std::endl;
+	}
+	else
+		os << std::endl;
 }

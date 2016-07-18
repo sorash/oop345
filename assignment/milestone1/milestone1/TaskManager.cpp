@@ -32,7 +32,8 @@ void TaskManager::readCSV(std::string& file, char delim)
 				while (std::getline(ss, buf2, delim))
 				{
 					// remove leading and trailing white spaces
-					buf2.erase(std::remove_if(buf2.begin(), buf2.end(), isspace), buf2.end());
+					buf2.erase(0, buf2.find_first_not_of(' '));
+					buf2.erase(buf2.find_last_not_of(' ') + 1);
 					
 					if (!buf2.empty())
 						fields.push_back(buf2);
