@@ -31,3 +31,14 @@ void Task::display(std::ostream& os)
 	else
 		os << std::endl;
 }
+
+void Task::graph(std::ostream& os)
+{
+	if (!accept.empty())
+		os << '"' << name << '"' << "->" << '"' << accept << '"' << " [color=green];" << std::endl;
+	if (!reject.empty())
+		os << '"' << name << '"' << "->" << '"' << reject << '"' << " [color=red];" << std::endl;
+	
+	if (accept.empty() && reject.empty())
+		os << '"' << name << '"' << " [shape=box];" << std::endl;
+}

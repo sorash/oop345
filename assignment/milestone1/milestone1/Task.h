@@ -11,6 +11,7 @@ class Task
 public:
 	Task(std::string name, std::string slots, std::string accept, std::string reject);
 	void display(std::ostream& os);
+	void graph(std::ostream& os);
 };
 
 #endif

@@ -14,6 +14,7 @@ int main(int argc, char** argv)
 	// create a new task manager
 	TaskManager tm = TaskManager(std::string(argv[1]), argv[2][0]);
 	tm.display(std::cout);
+	tm.graph(argv[1]);
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
 	char c;

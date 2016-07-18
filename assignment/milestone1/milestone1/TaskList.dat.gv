@@ -1,0 +1,20 @@
+digraph task {
+"Power Supply"->"Motherboard" [color=green];
+"Motherboard"->"CPU" [color=green];
+"Motherboard"->"Remove CPU" [color=red];
+"Remove CPU"->"CPU" [color=green];
+"CPU"->"Memory" [color=green];
+"CPU"->"Remove CPU" [color=red];
+"Remove CPU"->"CPU" [color=green];
+"Memory"->"SSD" [color=green];
+"Memory"->"Remove Memory" [color=red];
+"Remove Memory"->"Memory" [color=green];
+"SSD"->"GPU" [color=green];
+"SSD"->"Remove SSD" [color=red];
+"Remove SSD"->"SSD" [color=green];
+"GPU"->"Test" [color=green];
+"Test"->"Approve" [color=green];
+"Test"->"Repair" [color=red];
+"Repair" [shape=box];
+"Approve" [shape=box];
+}

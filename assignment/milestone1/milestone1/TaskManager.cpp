@@ -86,3 +86,26 @@ void TaskManager::display(std::ostream& os)
 	for (auto task : tasks)
 		task.display(os);
 }
+
+void TaskManager::graph(std::string file)
+{
+	std::ofstream os;
+	std::string gvFile = file + ".gv";
+	std::string pngFile = gvFile + ".png";
+	os.open(gvFile);
+
+	os << "digraph task" << " {" << std::endl;
+
+	for (auto task : tasks)
+		task.graph(os);
+
+	os << "}";
+	os.close();
+
+	// convert to gif
+	std::string cmd = "dot -Tpng " + gvFile + " -o " + pngFile;
+	std::cout << "> " << cmd << std::endl;
+	system(cmd.c_str());
+	std::cout << "> " << pngFile << std::endl;
+	system(pngFile.c_str());
+}
