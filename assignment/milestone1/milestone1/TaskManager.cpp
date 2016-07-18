@@ -35,10 +35,12 @@ void TaskManager::readCSV(std::string& file, char delim)
 					buf2.erase(0, buf2.find_first_not_of(' '));
 					buf2.erase(buf2.find_last_not_of(' ') + 1);
 					
+					// make sure it isn't an empty line and add it to fields
 					if (!buf2.empty())
 						fields.push_back(buf2);
 				}
 
+				// add to tasks
 				addTask(fields, line);
 				fields.clear();
 
@@ -61,6 +63,7 @@ void TaskManager::addTask(std::vector<std::string> fields, int line)
 	int count = fields.size();
 	std::string name, slots = "0", accept = "", reject = "";
 	
+	// make sure there are enough fields, and assign them
 	switch (count)
 	{
 	case 4:
@@ -77,6 +80,7 @@ void TaskManager::addTask(std::vector<std::string> fields, int line)
 		break;
 	}
 
+	// add to tasks if name isn't blank
 	if(!name.empty())
 		tasks.push_back(Task(name, slots, accept, reject));
 }
@@ -94,15 +98,16 @@ void TaskManager::graph(std::string file)
 	std::string pngFile = gvFile + ".png";
 	os.open(gvFile);
 
+	// write to the graph file
 	os << "digraph task" << " {" << std::endl;
 
 	for (auto task : tasks)
 		task.graph(os);
 
 	os << "}";
-	os.close();
+	os.close();	// ***DONT FORGET THIS...***
 
-	// convert to gif
+	// convert to png
 	std::string cmd = "dot -Tpng " + gvFile + " -o " + pngFile;
 	std::cout << "> " << cmd << std::endl;
 	system(cmd.c_str());
