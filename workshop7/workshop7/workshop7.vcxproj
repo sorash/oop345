@@ -142,11 +142,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Product.cpp" />
     <ClCompile Include="Sale.cpp" />
     <ClCompile Include="w7.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="iProduct.h" />
+    <ClInclude Include="Product.h" />
     <ClInclude Include="Sale.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
