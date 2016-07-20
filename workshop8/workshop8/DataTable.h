@@ -7,6 +7,8 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include <numeric>
+#include <algorithm>
 
 namespace w8
 {
@@ -45,27 +47,16 @@ namespace w8
 
 		T mean() const
 		{
-			T yTot = 0;
-			for (int i = 0; i < y.size(); i++)
-				yTot += y[i];
-			
+			T yTot = std::accumulate(y.begin(), y.end(), 0);
 			return yTot / y.size();
 		}
 
 		T sigma() const
 		{
-			// get the mean
-			T mean = mean();
-
-			// get distance of points from the mean and add them up
-			T distFromMean = 0;
-			for (int i = 0; i < y.size(); i++)
-				distFromMean += (mean - y[i]);
-
-			// divide by the number of points
-			// TODO get square root of distFromMean / y.size()
-			distFromMean / y.size()
-			return ;
+			std::vector<T> diff(y.size());
+			T meanVal = mean();
+			T stdDev = std::transform(y.begin(), y.end(), diff.begin(), [meanVal](T x) { return x - meanVal; });
+			return stdDev;
 		}
 
 		T median() const
