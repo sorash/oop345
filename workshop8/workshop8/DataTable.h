@@ -54,7 +54,18 @@ namespace w8
 
 		T sigma() const
 		{
-			return 1;
+			// get the mean
+			T mean = mean();
+
+			// get distance of points from the mean and add them up
+			T distFromMean = 0;
+			for (int i = 0; i < y.size(); i++)
+				distFromMean += (mean - y[i]);
+
+			// divide by the number of points
+			// TODO get square root of distFromMean / y.size()
+			distFromMean / y.size()
+			return ;
 		}
 
 		T median() const
