@@ -13,7 +13,7 @@ namespace w8
 	template<class T>
 	class DataTable
 	{
-		std::vector<std::pair<T, T>> points;
+		std::vector<T> x, y;
 		int width, decimals;
 
 	public:
@@ -32,14 +32,13 @@ namespace w8
 				if (!line.empty())
 				{
 					ss.str(line);
-					T first, second;
-					ss >> first >> second;
-					std::pair<T, T> temp;
-					temp.first = first;
-					temp.second = second;
+
+					T fx, fy;
+					ss >> fx >> fy;
 
 					// add to points
-					points.push_back(temp);
+					x.push_back(fx);
+					y.push_back(fy);
 				}
 			}
 		}
@@ -69,10 +68,10 @@ namespace w8
 			os << std::setw(width) << "x"
 				<< std::setw(width) << "y" << std::endl;
 
-			for (const auto& p : points)
+			for (int i = 0; i < x.size(); i++)
 			{
-				os << std::setw(width) << std::fixed << std::setprecision(decimals) << p.first 
-					<< std::setw(width) << std::fixed << std::setprecision(decimals) << p.second << std::endl;
+				os << std::setw(width) << std::fixed << std::setprecision(decimals) << x[i]
+					<< std::setw(width) << std::fixed << std::setprecision(decimals) << y[i] << std::endl;
 			}
 		}
 	};
