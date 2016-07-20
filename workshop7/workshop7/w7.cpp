@@ -14,8 +14,6 @@ int main(int argc, char** argv) {
 
 	w7::Sale sale(argv[1]);
 	sale.display(std::cout);
-	/*std::ifstream ifs(argv[1]);
-	w7::readProduct(ifs);*/
 
 	std::cout << "\nPress any key to continue ... ";
 	std::cin.get();
