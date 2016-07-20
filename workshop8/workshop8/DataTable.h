@@ -45,7 +45,11 @@ namespace w8
 
 		T mean() const
 		{
-			return 0;
+			T yTot = 0;
+			for (int i = 0; i < y.size(); i++)
+				yTot += y[i];
+			
+			return yTot / y.size();
 		}
 
 		T sigma() const
