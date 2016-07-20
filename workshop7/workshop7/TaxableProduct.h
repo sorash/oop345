@@ -5,7 +5,7 @@
 
 class TaxableProduct : public Product
 {
-	double taxes[2] = { 0.13, 0.08 };
+	double taxes[2] = { 1.13, 1.08 };
 	char tax;
 
 public:
