@@ -11,5 +11,7 @@ double TaxableProduct::getCharge() const
 
 void TaxableProduct::display(std::ostream& os) const
 {
-	os << std::setw(10) << number << std::setw(10) << cost << (tax == 'H' ? "HST" : "PST") << std::endl;
+	os << std::setw(10) << number 
+		<< std::setw(10) << std::fixed << std::setprecision(2) << cost 
+		<< ' ' << (tax == 'H' ? "HST" : "PST") << std::endl;
 }

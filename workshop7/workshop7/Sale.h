@@ -8,7 +8,7 @@ namespace w7
 {
 	class Sale
 	{
-		std::vector<w7::iProduct> products;
+		std::vector<w7::iProduct*> products;
 
 	public:
 		Sale(const char* fileName);

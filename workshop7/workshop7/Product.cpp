@@ -10,5 +10,6 @@ double Product::getCharge() const
 
 void Product::display(std::ostream & os) const
 {
-	os << std::setw(10) << number << std::setw(10) << cost << std::endl;
+	os << std::setw(10) << number 
+		<< std::setw(10) << std::fixed << std::setprecision(2) << cost << ' ' << std::endl;
 }
