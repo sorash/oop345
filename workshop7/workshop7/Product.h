@@ -5,6 +5,7 @@
 
 class Product : public w7::iProduct
 {
+protected:
 	long number;
 	double cost;
 
