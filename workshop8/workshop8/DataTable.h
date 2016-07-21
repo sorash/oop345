@@ -63,7 +63,13 @@ namespace w8
 
 		T median() const
 		{
-			return 2;
+			std::vector<T> copy = y;
+
+			// sort a copy of the y values and get the middle of it
+			std::sort(copy.begin(), copy.end());
+			T median = copy[copy.size() / 2];
+
+			return median;
 		}
 
 		void regression(T& slope, T& y_intercept) const
