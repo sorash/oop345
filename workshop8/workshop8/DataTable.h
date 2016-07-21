@@ -74,7 +74,20 @@ namespace w8
 
 		void regression(T& slope, T& y_intercept) const
 		{
+			// average of values
+			T avgX = std::accumulate(x.begin(), x.end(), 0.0) / x.size();
+			T avgY = std::accumulate(y.begin(), y.end(), 0.0) / y.size();
 
+			// numerator and denominator of slope
+			T numer = 0.0, denom = 0.0;
+			for (int i = 0; i < x.size(); ++i)
+			{
+				numer += (x[i] - avgX) * (y[i] - avgY);
+				denom += (x[i] - avgX) * (x[i] - avgX);
+			}
+
+			slope = numer / denom;
+			y_intercept = avgY - (slope * avgX);	// y=mx+b --> b=y-(mx);
 		}
 
 		void display(std::ostream& os) const
