@@ -53,10 +53,12 @@ namespace w8
 
 		T sigma() const
 		{
-			std::vector<T> diff(y.size());
-			T meanVal = mean();
-			T stdDev = std::transform(y.begin(), y.end(), diff.begin(), [meanVal](T x) { return x - meanVal; });
-			return stdDev;
+			T meanVal = mean(), sumDeviation = 0;
+
+			for (int i = 0; i < y.size(); ++i)
+				sumDeviation += (y[i] - meanVal) * (y[i] - meanVal);
+
+			return std::sqrt(sumDeviation / y.size());
 		}
 
 		T median() const
