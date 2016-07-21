@@ -47,13 +47,13 @@ namespace w8
 
 		T mean() const
 		{
-			T yTot = std::accumulate(y.begin(), y.end(), 0);
+			T yTot = std::accumulate(y.begin(), y.end(), 0.0);
 			return yTot / y.size();
 		}
 
 		T sigma() const
 		{
-			T meanVal = mean(), sumDeviation = 0;
+			T meanVal = mean(), sumDeviation = 0.0;
 
 			for (int i = 0; i < y.size(); ++i)
 				sumDeviation += (y[i] - meanVal) * (y[i] - meanVal);
