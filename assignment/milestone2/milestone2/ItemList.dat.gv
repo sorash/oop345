@@ -1,0 +1,10 @@
+digraph item {
+"CPU"->"CPU" [color=green];
+"CPU"->"Remove CPU" [color=red];
+"Memory"->"Memory" [color=green];
+"Memory"->"Remove Memory" [color=red];
+"GPU"->"GPU" [color=green];
+"GPU"->"Remove GPU" [color=red];
+"Power Supply"->"Power Supply" [color=green];
+"Power Supply"->"Remove Power Supply" [color=red];
+}
