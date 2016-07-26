@@ -15,16 +15,20 @@ int main(int argc, char** argv)
 	std::cout << "Items Record Field Delimiter  = " << argv[4][0] << std::endl;
 	std::cout << "Orders File Specified         = " << argv[5] << std::endl;
 	std::cout << "Orders Record Field Delimiter = " << argv[6][0] << std::endl;
-	std::cout << "-------------------------------" << std::endl << std::endl;
+	std::cout << "-------------------------------" << std::endl;
 
 	// create a new task manager
+	std::cout << std::endl << "Tasks" << std::endl << "-------------------------------" << std::endl;
 	TaskManager tm = TaskManager(std::string(argv[1]), argv[2][0]);
 	tm.display(std::cout);
+	std::cout << "-------------------------------" << std::endl << std::endl;
 	tm.graph(std::string(argv[1]));
 
 	// create a new item manager
+	std::cout << std::endl << "Items" << std::endl << "-------------------------------" << std::endl;
 	ItemManager im = ItemManager(std::string(argv[3]), argv[4][0]);
 	im.display(std::cout);
+	std::cout << "-------------------------------" << std::endl << std::endl;
 	im.graph(std::string(argv[1]));
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
