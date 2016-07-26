@@ -4,4 +4,7 @@
     <LocalDebuggerCommandArguments>TaskList.dat | ItemList.dat | OrderList.dat |</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup>
+    <ShowAllFiles>false</ShowAllFiles>
+  </PropertyGroup>
 </Project>
