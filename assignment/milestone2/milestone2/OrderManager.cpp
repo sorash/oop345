@@ -64,22 +64,6 @@ void OrderManager::addOrder(std::vector<std::string> fields, int line)
 	std::string custName = "", prodName = "";
 	std::vector<std::string> itemList;
 
-	// make sure there are enough fields, and assign them
-	/*switch (count)
-	{
-	case 5:
-		desc = fields[4];
-	case 4:
-		name = fields[0];
-		installer = fields[1];
-		remover = fields[2];
-		code = fields[3];
-		break;
-	default:
-		std::cerr << "Line " << line << ": expected 3 or more fields for an order, found " << count << std::endl;
-		break;
-	}*/
-
 	if (count < 3)
 		std::cerr << "Line " << line << ": expected 3 or more fields for an order, found " << count << std::endl;
 	else
