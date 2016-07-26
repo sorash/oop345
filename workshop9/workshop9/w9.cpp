@@ -20,7 +20,16 @@ w9::List<w9::Product> merge(const w9::List<w9::Description>& desc,
 		for (int ii = 0; ii < price.size(); ii++)
 		{
 			if (desc[i].code == price[ii].code)
-				priceList += new w9::Product(desc[i].desc, price[ii].price);
+			{
+				try
+				{
+					priceList += new w9::Product(desc[i].desc, price[ii].price);
+				}
+				catch (const char* err)
+				{
+					throw err;
+				}
+			}
 		}
 	}
 
