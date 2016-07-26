@@ -108,6 +108,11 @@ void ItemManager::graph(std::string file)
 
 	// convert to png
 	std::string cmd = "dot -Tpng " + gvFile + " -o " + pngFile;
+
+#ifdef _WIN32
+	// change command for windows
+	cmd = "\"C:/Program Files (x86)/Graphviz2.38/bin/dot.exe\" -Tpng " + gvFile + " -o " + pngFile;
+#endif
 	std::cout << "> " << cmd << std::endl;
 	system(cmd.c_str());
 	std::cout << "> " << pngFile << std::endl;

@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 	ItemManager im = ItemManager(std::string(argv[3]), argv[4][0]);
 	im.display(std::cout);
 	std::cout << "-------------------------------" << std::endl << std::endl;
-	im.graph(std::string(argv[1]));
+	im.graph(std::string(argv[3]));
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
 	char c;
