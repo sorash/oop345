@@ -23,11 +23,13 @@ w9::List<w9::Product> merge(const w9::List<w9::Description>& desc,
 			{
 				try
 				{
-					priceList += new w9::Product(desc[i].desc, price[ii].price);
+					w9::Product* p = new w9::Product(desc[i].desc, price[ii].price);
+					p->validate();
+					priceList += p;
 				}
-				catch (const char* err)
+				catch (...)
 				{
-					throw err;
+					throw;
 				}
 			}
 		}
