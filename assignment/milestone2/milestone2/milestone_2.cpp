@@ -1,5 +1,6 @@
 #include "TaskManager.h"
 #include "ItemManager.h"
+#include "OrderManager.h"
 
 int main(int argc, char** argv)
 {
@@ -30,6 +31,12 @@ int main(int argc, char** argv)
 	im.display(std::cout);
 	std::cout << "-------------------------------" << std::endl << std::endl;
 	im.graph(std::string(argv[3]));
+
+	// create a new order manager
+	std::cout << std::endl << "Orders" << std::endl << "-------------------------------" << std::endl;
+	OrderManager om = OrderManager(std::string(argv[5]), argv[6][0]);
+	om.display(std::cout);
+	std::cout << "-------------------------------" << std::endl << std::endl;
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
 	char c;
