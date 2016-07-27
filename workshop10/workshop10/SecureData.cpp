@@ -71,20 +71,22 @@ namespace w10 {
 			throw std::string("\n***Data is not encoded***\n");
 		else {
 			// open binary file
-
-			// write binary file here
-
+			std::ofstream ofs(file);
+			ofs << text;
+			ofs.close();
 		}
 	}
 
 	void SecureData::restore(const char* file, char key) {
-		// open binary file
+		//// open binary file
+		//std::ifstream ifs(file, std::ifstream::ate | std::ifstream::binary);
 
+		//// allocate memory
+		//std::cout << ifs.tellg() << std::endl;
 
-		// allocate memory here
-
-		// read binary file here
-
+		//// read binary file
+		////ifs >> readText;
+		//ifs.close();
 
 		std::cout << "\n" << nbytes + 1 << " bytes copied from binary file "
 			<< file << " into memory (null byte included)\n";
