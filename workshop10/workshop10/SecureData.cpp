@@ -78,15 +78,27 @@ namespace w10 {
 	}
 
 	void SecureData::restore(const char* file, char key) {
-		//// open binary file
-		//std::ifstream ifs(file, std::ifstream::ate | std::ifstream::binary);
+		// open binary file
+		std::ifstream ifs(file, std::ios::in);
 
-		//// allocate memory
-		//std::cout << ifs.tellg() << std::endl;
+		// allocate memory
+		nbytes = 0;
+		ifs >> std::noskipws;
+		while (ifs.good()) {
+			char c;
+			ifs >> c;
+			nbytes++;
+		}
+		nbytes--;
+		ifs.clear();
+		ifs.seekg(0, std::ios::beg);
+		text = new char[nbytes + 1];
 
-		//// read binary file
-		////ifs >> readText;
-		//ifs.close();
+		// read binary file
+		int i = 0;
+		while (ifs.good())
+			ifs >> text[i++];
+		text[--i] = '\0';
 
 		std::cout << "\n" << nbytes + 1 << " bytes copied from binary file "
 			<< file << " into memory (null byte included)\n";
