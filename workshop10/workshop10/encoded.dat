@@ -1,7 +1,14 @@
-gKITKQJ@P]TAWEVAP]TAWPLEPETVKCVEIIAVGKJWPVQGPWBVKIEHEJCQECAW.BQJ@EIAJPEHP]TAWEJ@KVKPLAVGKITKQJ@P]TAW
-mJgGKITKQJ@P]TAW.MJGHQ@ATKMJPAVWEJ@VABAVAJGAWPKA\MWPMJCP]TAWAJQIAVEPMKJWKBJEIA@.GKJWPEJPREHQAWEVVE]WKBKFNAGPWKBEJA\MWPMJCP]TAGHEWWAWEJ@BQJGPMKJ.P]TAW
-gGHEVMBMA@PLA@MBBAVAJGAFAPSAAJHREHQAWEJ@VREHQAWEJ@.VABAVAJGAWPKAEGLSLMGLLAHTA@WMITHMB]IEJ]KBPLABEGMHMPMAWEREMHEFHA.MJPLAWPEJ@EV@HMFVEV]
-..pLMWGLETPAV@AWGVMFAWPLAJKJ	BQJGPMKJP]TAWMJ@APEMH
-pLA@AWGVMTPMKJ.MJGHQ@AWEVARMASKBKJA	@MIAJWMKJEHEVVE]WMJFKPLWPEPMGEJ@@]JEIMGIAIKV].EJ@WLKSWLKSPKEHHKGEPAIQHPM	@MIAJWMKJEHEVVE]WMJFKPLWPEPMGEJ@@]JEIMG.IAIKV]
-pLA@AWGVMTPMKJKBGHEWWAWVARMASWGHEWW@ABMJMPMKJWMJPVK@QGAW.IKRA	GKJWPVQGPKVWEJ@IKRA	EWWMCJIAJPKTAVEPKVWEJ@MJGHQ@AW@AGHEVEPMKJWKB.WTAGMEHIAIFAVWWQGLEWFMPBMAH@WGHEWWREVMEFHAWEJ@GHEWWBQJGPMKJW
-.
+ Compound types are types that a programmer constructs from a language's
+ fundamental types and/or other compound types.  In C++11, compound types 
+ include pointers and references to existing types, enumerations of named 
+ constant values, arrays of objects of an existing type, classes and function
+ types.  C++11 clarified the difference between lvalues and rvalues and 
+ references to each, which helped simplify many of the facilities available
+ in the standard library.
+
+ This chapter describes the non-function types in detail.  The description 
+ includes a review of one-dimensional arrays in both static and dynamic memory
+ and shows how to allocate multi-dimensional arrays in both static and dynamic
+ memory.  The description of classes reviews class definitions, introduces
+ move-constructors and move-assignment operators and includes declarations of
+ special members such as bit fields, class variables and class functions.
