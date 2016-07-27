@@ -115,6 +115,13 @@ void ItemManager::graph(std::string file)
 #endif
 	std::cout << "> " << cmd << std::endl;
 	system(cmd.c_str());
-	std::cout << "> " << pngFile << std::endl;
-	system(pngFile.c_str());
+	
+	std::cout << "Would you like to open file: '" << pngFile << "'? (Y/N)" << std::endl;
+	char opt;
+	std::cin >> opt;
+	if (tolower(opt) == 'y')
+	{
+		std::cout << "> " << pngFile << std::endl;
+		system(pngFile.c_str());
+	}
 }
