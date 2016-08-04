@@ -1,4 +1,5 @@
 #include "Item.h"
+#include <iomanip>
 
 Item::Item(std::string name, std::string installer, std::string remover, std::string code, std::string desc)
 	: name(name), installer(installer), remover(remover), code(code), desc(desc) { }
@@ -6,15 +7,15 @@ Item::Item(std::string name, std::string installer, std::string remover, std::st
 void Item::display(std::ostream& os)
 {
 	// display the item information
-	os << "Name: " << '"' << name << '"'
-		<< ", Installer: " << '"' << installer << '"'
-		<< ", Remover: " << '"' << remover << '"'
-		<< ", Sequential Code: " << '"' << code << '"';
+	os << std::setw(13) << std::left << name
+		<< '[' << std::setw(5) << std::setfill('0') << std::right << code << ']' << std::setfill(' ')
+		<< " From " << std::setw(13) << std::left << installer
+		<< " To " << remover << std::endl;
 
 	if (!desc.empty())
-		os << ", Description: " << '"' << desc << '"' << std::endl;
+		os << std::setw(19) << std::setfill(' ') << ' ' << ": " << desc << std::endl;
 	else
-		os << std::endl;
+		os << std::setw(19) << std::setfill(' ') << ' ' << ": " << "no detailed description" << std::endl;
 }
 
 void Item::graph(std::ostream& os)
