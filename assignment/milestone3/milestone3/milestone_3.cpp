@@ -19,7 +19,7 @@ int main(int argc, char** argv)
 	std::cout << "-------------------------------" << std::endl;
 
 	// create a new task manager
-	std::cout << std::endl << "Tasks" << std::endl << "-------------------------------" << std::endl;
+	std::cout << std::endl << "Building the Network of Tasks" << std::endl << "-------------------------------" << std::endl;
 	TaskManager tm = TaskManager(std::string(argv[1]), argv[2][0]);
 	tm.display(std::cout);
 	std::cout << "-------------------------------" << std::endl << std::endl;

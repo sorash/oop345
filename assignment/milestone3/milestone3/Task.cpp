@@ -1,4 +1,5 @@
 #include "Task.h"
+#include <iomanip>
 
 Task::Task(std::string name, std::string slots, std::string accept, std::string reject)
 	: name(name), slots(slots), accept(accept), reject(reject)
@@ -9,22 +10,15 @@ Task::Task(std::string name, std::string slots, std::string accept, std::string 
 void Task::display(std::ostream& os)
 {
 	// display the task information
-	os << "Name: " << '"' << name << '"';
+	os << std::setw(13) << std::left << "Task Name" << ": " << std::setw(16) << '[' + name + ']' << '[' << slots << ']';
 
-	if (slots != "0")
+	if (!accept.empty())
 	{
-		os << ", Slots: " << '"' << slots << '"';
+		os << std::endl << std::setw(13) << std::left << " Continue to" << ": " << '[' << accept << ']';
 
-		if (!accept.empty())
+		if (!reject.empty())
 		{
-			os << ", Accept: " << '"' << accept << '"';
-
-			if (!reject.empty())
-			{
-				os << ", Reject: " << '"' << reject << '"' << std::endl;
-			}
-			else
-				os << std::endl;
+			os << std::endl << std::setw(13) << std::left << " Redirect to" << ": " << '[' << reject << ']' << std::endl;
 		}
 		else
 			os << std::endl;
