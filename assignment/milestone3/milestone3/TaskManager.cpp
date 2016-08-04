@@ -61,7 +61,7 @@ void TaskManager::readCSV(std::string& file, char delim)
 void TaskManager::addTask(std::vector<std::string> fields, int line)
 {
 	int count = fields.size();
-	std::string name, slots = "0", accept = "", reject = "";
+	std::string name, slots = "1", accept = "", reject = "";
 	
 	// make sure there are enough fields, and assign them
 	switch (count)
