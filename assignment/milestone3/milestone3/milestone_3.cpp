@@ -34,12 +34,19 @@ int main(int argc, char** argv)
 	im.display(std::cout);
 	im.graph(std::string(argv[2]));
 
-	// validate
+	// validate tasks
 	std::cout << std::endl << "Validating Tasks" << std::endl << std::setw(16) << std::setfill('-') << '-' << std::endl << std::setfill(' ');
 	if (!tm.validate())
 		std::cout << "Task integrity check failed." << std::endl;
 	else
 		std::cout << "Task integrity check passed." << std::endl;
+
+	// validate items
+	std::cout << std::endl << "Validating Items" << std::endl << std::setw(16) << std::setfill('-') << '-' << std::endl << std::setfill(' ');
+	if (!im.validate())
+		std::cout << "Item integrity check failed." << std::endl;
+	else
+		std::cout << "Item integrity check passed." << std::endl;
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
 	std::cin.get();

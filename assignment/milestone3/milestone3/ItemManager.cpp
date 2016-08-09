@@ -129,3 +129,21 @@ void ItemManager::graph(std::string file)
 	else
 		std::cerr << "Creation of flowchart file '" << pngFile << "' failed." << std::endl;
 }
+
+bool ItemManager::validate()
+{
+	bool allValid = true;
+
+	for (auto item : items)
+	{
+		if (!item.hasInstaller())
+			std::cerr << item.getName() << ": missing or invalid installer." << std::endl;
+		if (!item.hasRemover())
+			std::cerr << item.getName() << ": missing or invalid remover." << std::endl;
+
+		if (!item.hasInstaller() || !item.hasRemover())
+			allValid = false;
+	}
+
+	return allValid;
+}
