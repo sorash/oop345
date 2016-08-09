@@ -41,7 +41,6 @@ int main(int argc, char** argv)
 		std::cout << "Task integrity check passed." << std::endl;
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
-	std::cin.get();
 	std::cin.ignore(1000, '\n');
 
 	return 0;
