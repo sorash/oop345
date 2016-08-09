@@ -19,3 +19,18 @@ void Order::graph(std::ostream& os)
 	for (auto i : itemList)
 		os << '"' << i << '"' << "->" << '"' << custName << '\n' << prodName << '"' << ";" << std::endl;
 }
+
+std::string Order::getCustName()
+{
+	return custName;
+}
+
+std::string Order::getProdName()
+{
+	return prodName;
+}
+
+std::vector<std::string> Order::getItemList()
+{
+	return itemList;
+}
