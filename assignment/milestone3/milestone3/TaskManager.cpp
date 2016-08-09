@@ -118,12 +118,62 @@ void TaskManager::graph(std::string file)
 	std::cout << "> " << cmd << std::endl;
 	system(cmd.c_str());
 	
-	std::cout << "Would you like to open file: '" << pngFile << "'? (Y/N)" << std::endl;
-	char opt;
-	std::cin >> opt;
-	if (tolower(opt) == 'y')
+	//std::cout << "Would you like to open file: '" << pngFile << "'? (Y/N)" << std::endl;
+	//char opt;
+	//std::cin >> opt;
+	//if (tolower(opt) == 'y')
+	//{
+	//	std::cout << "> " << pngFile << std::endl;
+	//	system(pngFile.c_str());
+	//}
+}
+
+bool TaskManager::validate()
+{
+	bool allValid = true;
+
+	// check all tasks for validity
+	for (auto t : tasks)
 	{
-		std::cout << "> " << pngFile << std::endl;
-		system(pngFile.c_str());
+		bool validAccept = false, validReject = false;
+
+		// check for valid accept slot
+		if (t.hasAccept())
+		{
+			for (auto t2 : tasks)
+			{
+				if (t.getAccept() == t2.getName())
+				{
+					validAccept = true;
+					break;
+				}
+			}
+
+			if (!validAccept)
+				std::cerr << t.getName() << ": accept slot '" 
+					<< t.getAccept() << "' not found in list of tasks." << std::endl;
+		}
+
+		// check for valid reject slot
+		if (t.hasReject())
+		{
+			for (auto t2 : tasks)
+			{
+				if (t.getReject() == t2.getName())
+				{
+					validReject = true;
+					break;
+				}
+			}
+
+			if (!validReject)
+				std::cerr << t.getName() << ": reject slot '"
+				<< t.getReject() << "' not found in list of tasks." << std::endl;
+		}
+
+		if ((t.hasAccept() && !validAccept) || (t.hasReject() && !validReject))
+			allValid = false;
 	}
+
+	return allValid;
 }
