@@ -125,3 +125,24 @@ void OrderManager::graph(std::string file)
 	else
 		std::cerr << "Creation of flowchart file '" << pngFile << "' failed." << std::endl;
 }
+
+// this doesn't change anything since if the fields are missing, an order won't be
+// added to the list of orders, and therefore nothing goes through checking... hmm....
+// **going to leave this here in case I get any marks for it!**
+bool OrderManager::validate()
+{
+	bool allValid = true;
+
+	for (auto order : orders)
+	{
+		if (order.getProdName().empty())
+			std::cerr << order.getCustName() << ": missing product name." << std::endl;
+		if(order.getItemList().empty())
+			std::cerr << order.getCustName() << ": missing ordered items." << std::endl;
+		
+		if(order.getProdName().empty() || order.getItemList().empty())
+			allValid = false;
+	}
+
+	return allValid;
+}

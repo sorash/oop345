@@ -41,6 +41,13 @@ int main(int argc, char** argv)
 	else
 		std::cout << "Task integrity check passed." << std::endl;
 
+	// validate orders
+	std::cout << std::endl << "Validating Orders" << std::endl << std::setw(17) << std::setfill('-') << '-' << std::endl << std::setfill(' ');
+	if (!om.validate())
+		std::cout << "Order integrity check failed." << std::endl;
+	else
+		std::cout << "Order integrity check passed." << std::endl;
+
 	// validate items
 	std::cout << std::endl << "Validating Items" << std::endl << std::setw(16) << std::setfill('-') << '-' << std::endl << std::setfill(' ');
 	if (!im.validate())
