@@ -39,3 +39,28 @@ void Task::graph(std::ostream& os)
 	if (accept.empty() && reject.empty())
 		os << '"' << name << '"' << " [shape=box];" << std::endl;
 }
+
+bool Task::hasAccept()
+{
+	return !accept.empty();
+}
+
+bool Task::hasReject()
+{
+	return !reject.empty();
+}
+
+std::string Task::getName()
+{
+	return name;
+}
+
+std::string Task::getAccept()
+{
+	return accept;
+}
+
+std::string Task::getReject()
+{
+	return reject;
+}
