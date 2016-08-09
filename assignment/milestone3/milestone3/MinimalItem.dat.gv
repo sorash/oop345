@@ -1,0 +1,4 @@
+digraph item {
+"I7"->"INSTALL CPU" [color=green];
+"I7"->"REMOVE CPU" [color=red];
+}

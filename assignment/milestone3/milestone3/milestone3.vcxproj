@@ -159,9 +159,9 @@
     <ClInclude Include="TaskManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CustomerOrders.dat" />
-    <None Include="ItemList.dat" />
-    <None Include="TaskList.dat" />
+    <None Include="MinimalItem.dat" />
+    <None Include="MinimalOrder.dat" />
+    <None Include="MinimalTask.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

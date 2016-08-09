@@ -58,13 +58,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CustomerOrders.dat">
+    <None Include="MinimalItem.dat">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="ItemList.dat">
+    <None Include="MinimalOrder.dat">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="TaskList.dat">
+    <None Include="MinimalTask.dat">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
