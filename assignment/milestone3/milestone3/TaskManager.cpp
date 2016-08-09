@@ -116,16 +116,19 @@ void TaskManager::graph(std::string file)
 #endif
 
 	std::cout << "> " << cmd << std::endl;
-	system(cmd.c_str());
-	
-	//std::cout << "Would you like to open file: '" << pngFile << "'? (Y/N)" << std::endl;
-	//char opt;
-	//std::cin >> opt;
-	//if (tolower(opt) == 'y')
-	//{
-	//	std::cout << "> " << pngFile << std::endl;
-	//	system(pngFile.c_str());
-	//}
+	if (system(cmd.c_str()) == 0)	// make sure command ran properly
+	{
+		std::cout << "Would you like to open file: '" << pngFile << "'? (Y/N)" << std::endl;
+		char opt;
+		std::cin >> opt;
+		if (tolower(opt) == 'y')
+		{
+			std::cout << "> " << pngFile << std::endl;
+			system(pngFile.c_str());
+		}
+	}
+	else
+		std::cerr << "Creation of flowchart file '" << pngFile << "' failed." << std::endl;
 }
 
 bool TaskManager::validate()
