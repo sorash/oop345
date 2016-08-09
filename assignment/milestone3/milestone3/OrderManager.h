@@ -16,6 +16,7 @@ public:
 	OrderManager(std::string& file, char delim);
 	void readCSV(std::string& file, char delim);
 	void display(std::ostream& os);
+	void graph(std::string file);
 };
 
 #endif

@@ -13,3 +13,9 @@ void Order::display(std::ostream& os)
 	for (int i = 0; i < itemList.size(); i++)
 		os << " - " << '[' << std::setw(5) << std::setfill('0') << '0' << "] " << itemList[i] << std::endl << std::setfill(' ');
 }
+
+void Order::graph(std::ostream& os)
+{
+	for (auto i : itemList)
+		os << '"' << i << '"' << "->" << '"' << custName << '\n' << prodName << '"' << ";" << std::endl;
+}

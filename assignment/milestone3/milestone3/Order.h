@@ -12,6 +12,7 @@ class Order
 public:
 	Order(std::string custName, std::string prodName, std::vector<std::string> itemList);
 	void display(std::ostream& os);
+	void graph(std::ostream& os);
 };
 
 #endif

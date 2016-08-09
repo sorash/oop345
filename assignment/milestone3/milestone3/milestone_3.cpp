@@ -26,6 +26,7 @@ int main(int argc, char** argv)
 	std::cout << std::endl << "List of Accepted Customer Orders" << std::endl << std::setw(32) << std::setfill('-') << '-' << std::endl << std::setfill(' ');
 	OrderManager om = OrderManager(std::string(argv[3]), argv[4][0]);
 	om.display(std::cout);
+	om.graph(std::string(argv[3]));
 
 	// create a new item manager
 	std::cout << std::endl << "List of In-Stock Items" << std::endl << std::setw(22) << std::setfill('-') << '-' << std::endl << std::setfill(' ');
@@ -42,6 +43,7 @@ int main(int argc, char** argv)
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
 	std::cin.get();
+	std::cin.ignore(1000, '\n');
 
 	return 0;
 }

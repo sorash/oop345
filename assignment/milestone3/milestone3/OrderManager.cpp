@@ -85,3 +85,43 @@ void OrderManager::display(std::ostream& os)
 	for (auto order : orders)
 		order.display(os);
 }
+
+void OrderManager::graph(std::string file)
+{
+	std::ofstream os;
+	std::string gvFile = file + ".gv";
+	std::string pngFile = gvFile + ".png";
+	os.open(gvFile);
+
+	// write to the graph file
+	os << "digraph task" << " {" << std::endl;
+
+	for (auto order : orders)
+		order.graph(os);
+
+	os << "}";
+	os.close();	// ***DONT FORGET THIS...***
+
+	// convert to png
+	std::string cmd = "dot -Tpng " + gvFile + " -o " + pngFile;
+
+#ifdef _WIN32
+	// change command for windows
+	cmd = "\"C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe\" -Tpng " + gvFile + " -o " + pngFile;
+#endif
+
+	std::cout << "> " << cmd << std::endl;
+	if (system(cmd.c_str()) == 0)	// make sure command ran properly
+	{
+		std::cout << "Would you like to open file: '" << pngFile << "'? (Y/N)" << std::endl;
+		char opt;
+		std::cin >> opt;
+		if (tolower(opt) == 'y')
+		{
+			std::cout << "> " << pngFile << std::endl;
+			system(pngFile.c_str());
+		}
+	}
+	else
+		std::cerr << "Creation of flowchart file '" << pngFile << "' failed." << std::endl;
+}
