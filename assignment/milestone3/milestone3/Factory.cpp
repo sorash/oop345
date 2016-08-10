@@ -20,20 +20,25 @@ void Factory::findSource(TaskManager& tm)
 
 	for (auto task : tasks)
 	{
-		// check if task has an accept but not a reject
-		if (task.hasAccept() && !task.hasReject())
+		if (source == nullptr)
 		{
-			// check if task name is not any other task's accept or reject slot
-			int i = 0;
-			for (; i < tasks.size(); i++)
+			// check if task has an accept but not a reject
+			if (task.hasAccept() && !task.hasReject())
 			{
-				if (task.getName() == tasks[i].getAccept() || task.getName() == tasks[i].getReject())
-					break;
+				// check if task name is not any other task's accept or reject slot
+				int i = 0;
+				for (; i < tasks.size(); i++)
+				{
+					if (task.getName() == tasks[i].getAccept() || task.getName() == tasks[i].getReject())
+						break;
+				}
+
+				// if task is not any other task's accept or reject slot, make it the source node
+				if (i == tasks.size())
+					source = &task;
 			}
-			
-			// if task is not any other task's accept or reject slot, make it the source node
-			if (i == tasks.size())
-				source = &task;
 		}
+		else
+			std::cerr << "Multiple source nodes found." << std::endl;
 	}
 }
