@@ -1,16 +1,8 @@
 #include "Factory.h"
 
-Factory::Factory(TaskManager & tm) : machines(nullptr)
+Factory::Factory(TaskManager & tm)
 {
 	findSource(tm);
-}
-
-Factory::~Factory()
-{
-	if(machines != nullptr)
-		delete [] machines;
-
-	machines = nullptr;
 }
 
 void Factory::findSource(TaskManager& tm)
@@ -42,4 +34,23 @@ void Factory::findSource(TaskManager& tm)
 		else
 			std::cerr << "Multiple source nodes found." << std::endl;
 	}
+
+	// if a source node was found, initiate the machine
+	if (source != nullptr)
+	{
+		// TODO
+		// ** FIGURE OUT WHY SOURCE GETS RESET TO BLANK **
+
+		//std::cout << source->getName() << std::endl;
+		//int index = 0;
+		//for (; index < tasks.size(); index++)
+		//{
+		//	if (tasks[index].getName() == source->getName())
+		//		break;
+		//}
+
+		//machines.push_back(Machine(index, source));
+	}
+	else
+		std::cerr << "No source nodes found." << std::endl;
 }

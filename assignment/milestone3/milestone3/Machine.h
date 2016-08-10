@@ -9,7 +9,6 @@ class Machine
 	Task* task;
 
 public:
-	Machine();
 	Machine(int n, Task* t);
 	~Machine();
 };

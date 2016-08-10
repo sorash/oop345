@@ -6,11 +6,10 @@
 
 class Factory
 {
-	Machine* machines;
+	std::vector<Machine> machines;
 
 public:
 	Factory(TaskManager& tm);
-	~Factory();
 
 	void findSource(TaskManager& tm);
 };
