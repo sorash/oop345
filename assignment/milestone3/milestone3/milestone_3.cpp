@@ -1,6 +1,7 @@
 #include "TaskManager.h"
 #include "ItemManager.h"
 #include "OrderManager.h"
+#include "Factory.h"
 #include <iomanip>
 
 int main(int argc, char** argv)
@@ -54,6 +55,8 @@ int main(int argc, char** argv)
 		std::cout << "Item integrity check failed." << std::endl;
 	else
 		std::cout << "Item integrity check passed." << std::endl;
+
+	Factory f(tm);
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
 	std::cin.get();

@@ -180,3 +180,8 @@ bool TaskManager::validate()
 
 	return allValid;
 }
+
+std::vector<Task> TaskManager::getTasks()
+{
+	return tasks;
+}
