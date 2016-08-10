@@ -20,6 +20,7 @@ void Factory::findSource(TaskManager& tm)
 
 	for (auto task : tasks)
 	{
+		// make sure there is only one source node
 		if (source == nullptr)
 		{
 			// check if task has an accept but not a reject
