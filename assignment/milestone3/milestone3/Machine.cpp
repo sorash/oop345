@@ -18,3 +18,18 @@ void Machine::display(std::ostream& os)
 	if (task->hasReject())
 		os << "\t" << "Reject slot: '" << task->getReject() << "'" << std::endl;
 }
+
+Task Machine::getTask()
+{
+	return *task;
+}
+
+int Machine::getIndex()
+{
+	return index;
+}
+
+bool Machine::isSource()
+{
+	return source;
+}

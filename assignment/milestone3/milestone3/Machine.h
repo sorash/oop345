@@ -13,6 +13,10 @@ public:
 	Machine(int n, Task* t, bool s);
 
 	void display(std::ostream& os);
+
+	int getIndex();
+	Task getTask();
+	bool isSource();
 };
 
 #endif
