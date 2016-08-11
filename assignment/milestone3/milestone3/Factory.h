@@ -7,6 +7,7 @@
 class Factory
 {
 	std::vector<Machine> machines;
+	Task* sourceNode = nullptr;
 
 public:
 	Factory(TaskManager& tm);
