@@ -5,12 +5,13 @@
 
 class Machine
 {
-	int num;
+	int index;
 	Task* task;
 
 public:
 	Machine(int n, Task* t);
-	~Machine();
+
+	void display(std::ostream& os, bool source);
 };
 
 #endif

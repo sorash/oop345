@@ -56,6 +56,8 @@ int main(int argc, char** argv)
 	else
 		std::cout << "Item integrity check passed." << std::endl;
 
+	// create a factory
+	std::cout << std::endl << "Starting factory" << std::endl << std::setw(16) << std::setfill('-') << '-' << std::endl << std::setfill(' ');
 	Factory f(tm);
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;

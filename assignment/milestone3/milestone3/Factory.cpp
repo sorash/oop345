@@ -10,7 +10,7 @@ void Factory::findSource(TaskManager& tm)
 	Task* source = nullptr;
 	std::vector<Task> tasks = tm.getTasks();
 
-	for (auto task : tasks)
+	for (auto &task : tasks)	// pass as reference or source pointer loses value...
 	{
 		// make sure there is only one source node
 		if (source == nullptr)
@@ -35,21 +35,24 @@ void Factory::findSource(TaskManager& tm)
 			std::cerr << "Multiple source nodes found." << std::endl;
 	}
 
-	// if a source node was found, initiate the machine
+	// make sure a source node was found
 	if (source != nullptr)
 	{
-		// TODO
-		// ** FIGURE OUT WHY SOURCE GETS RESET TO BLANK **
+		std::cout << "Source node found: '" << source->getName() << "'" << std::endl;
 
-		//std::cout << source->getName() << std::endl;
-		//int index = 0;
-		//for (; index < tasks.size(); index++)
-		//{
-		//	if (tasks[index].getName() == source->getName())
-		//		break;
-		//}
+		// get index of source task in tasks list
+		int index = 0;
+		for (; index < tasks.size(); index++)
+		{
+			if (tasks[index].getName() == source->getName())
+				break;
+		}
 
-		//machines.push_back(Machine(index, source));
+		// initialize a machine with that index and task
+		Machine srcMach = Machine(index, source);
+		machines.push_back(srcMach);
+		std::cout << "Source ";
+		srcMach.display(std::cout, true);
 	}
 	else
 		std::cerr << "No source nodes found." << std::endl;
