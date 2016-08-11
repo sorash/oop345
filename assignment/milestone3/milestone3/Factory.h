@@ -17,6 +17,7 @@ public:
 
 	void findSource(TaskManager& tm);
 	void findAllJobs(OrderManager& om);
+	void createAllMachines(TaskManager& tm);
 };
 
 #endif
