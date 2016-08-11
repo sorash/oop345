@@ -146,3 +146,8 @@ bool OrderManager::validate()
 
 	return allValid;
 }
+
+std::vector<Order> OrderManager::getOrders()
+{
+	return orders;
+}
