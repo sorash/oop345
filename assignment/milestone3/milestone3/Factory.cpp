@@ -4,6 +4,7 @@ Factory::Factory(TaskManager & tm, OrderManager& om)
 {
 	findSource(tm);
 	findAllJobs(om);
+	createAllMachines(tm);
 }
 
 void Factory::findSource(TaskManager& tm)
@@ -61,4 +62,15 @@ void Factory::findAllJobs(OrderManager& om)
 {
 	for (auto order : om.getOrders())
 		jobs.push_back(order);
+}
+
+void Factory::createAllMachines(TaskManager& tm)
+{
+	std::vector<Task> tasks = tm.getTasks();
+	for (int i = 0; i < tasks.size(); i++)
+	{
+		// add machines if the task found is not the source node previously found
+		if (tasks[i].getName() != sourceNode->getName())
+			machines.push_back(Machine(i, &tasks[i], false));
+	}
 }
