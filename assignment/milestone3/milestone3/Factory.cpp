@@ -1,8 +1,9 @@
 #include "Factory.h"
 
-Factory::Factory(TaskManager & tm)
+Factory::Factory(TaskManager & tm, OrderManager& om)
 {
 	findSource(tm);
+	findAllJobs(om);
 }
 
 void Factory::findSource(TaskManager& tm)
@@ -49,8 +50,15 @@ void Factory::findSource(TaskManager& tm)
 
 		// initialize a machine with that index and task
 		Machine srcMach = Machine(index, sourceNode, true);
+		srcMach.display(std::cout);
 		machines.push_back(srcMach);
 	}
 	else
 		std::cerr << "No source nodes found." << std::endl;
+}
+
+void Factory::findAllJobs(OrderManager& om)
+{
+	for (auto order : om.getOrders())
+		jobs.push_back(order);
 }
