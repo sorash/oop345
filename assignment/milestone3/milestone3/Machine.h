@@ -7,11 +7,12 @@ class Machine
 {
 	int index;
 	Task* task;
+	bool source;
 
 public:
-	Machine(int n, Task* t);
+	Machine(int n, Task* t, bool s);
 
-	void display(std::ostream& os, bool source);
+	void display(std::ostream& os);
 };
 
 #endif
