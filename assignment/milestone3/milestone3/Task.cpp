@@ -55,6 +55,11 @@ std::string Task::getName()
 	return name;
 }
 
+std::string Task::getSlots()
+{
+	return slots;
+}
+
 std::string Task::getAccept()
 {
 	return accept;

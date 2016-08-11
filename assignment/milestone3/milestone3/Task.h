@@ -15,7 +15,9 @@ public:
 
 	bool hasAccept();
 	bool hasReject();
+
 	std::string getName();
+	std::string getSlots();
 	std::string getAccept();
 	std::string getReject();
 };
