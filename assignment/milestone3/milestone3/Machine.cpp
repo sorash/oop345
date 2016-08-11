@@ -5,7 +5,7 @@ Machine::Machine(int n, Task* t, bool s) : index(n), task(t), source(s) { }
 void Machine::display(std::ostream& os)
 {
 	if (source)
-		os << "machine ";
+		os << "Source machine ";
 	else
 		os << "Machine ";
 
