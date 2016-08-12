@@ -6,11 +6,11 @@
 class Machine
 {
 	int index;
-	Task* task;
+	Task task;
 	bool source;
 
 public:
-	Machine(int n, Task* t, bool s);
+	Machine(int n, Task t, bool s);
 
 	void display(std::ostream& os);
 
