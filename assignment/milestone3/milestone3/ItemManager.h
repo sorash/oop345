@@ -18,6 +18,8 @@ public:
 	void display(std::ostream& os);
 	void graph(std::string file);
 	bool validate();
+
+	std::vector<Item> getItems();
 };
 
 #endif

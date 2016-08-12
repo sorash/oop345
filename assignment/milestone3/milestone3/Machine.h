@@ -2,6 +2,8 @@
 #define MACHINE_H_
 
 #include "TaskManager.h"
+#include "Order.h"
+#include "ItemManager.h"
 
 class Machine
 {
@@ -17,6 +19,8 @@ public:
 	int getIndex();
 	Task getTask();
 	bool isSource();
+
+	int process(Order order, ItemManager& im);
 };
 
 #endif

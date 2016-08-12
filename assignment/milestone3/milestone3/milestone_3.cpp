@@ -15,7 +15,7 @@ int main(int argc, char** argv)
 	std::cout << "Tasks File Specified          = " << argv[1] << std::endl;
 	std::cout << "Items File Specified          = " << argv[2] << std::endl;
 	std::cout << "Orders File Specified         = " << argv[3] << std::endl;
-	std::cout << "Record Field Delimiter = " << argv[4][0] << std::endl;
+	std::cout << "Record Field Delimiter        = " << argv[4][0] << std::endl;
 
 	// create a new task manager
 	std::cout << std::endl << "Building the Network of Tasks" << std::endl << std::setw(29) << std::setfill('-') << '-' << std::endl << std::setfill(' ');
@@ -58,7 +58,7 @@ int main(int argc, char** argv)
 
 	// create a factory
 	std::cout << std::endl << "Starting factory" << std::endl << std::setw(16) << std::setfill('-') << '-' << std::endl << std::setfill(' ');
-	Factory f(tm, om);
+	Factory f(tm, om, im);
 
 	std::cout << "Press Enter Key to Exit ... " << std::endl;
 	std::cin.get();

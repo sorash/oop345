@@ -1,4 +1,5 @@
 #include "Machine.h"
+#include <cstdlib> // std::rand()
 
 Machine::Machine(int n, Task t, bool s) : index(n), task(t), source(s) { }
 
@@ -32,4 +33,31 @@ int Machine::getIndex()
 bool Machine::isSource()
 {
 	return source;
+}
+
+int Machine::process(Order ord, ItemManager& im)
+{
+	for (auto item : ord.getItemList())
+	{
+		for (auto it : im.getItems())
+		{
+			if (item == it.getName())
+			{
+				if (it.getInstaller() == task.getName() || it.getRemover() == task.getName())
+				{
+					// nowhere to go if the task has no reject slot
+					// so might as well skip the coin flip and process it
+					if (task.hasReject())
+					{
+						// do a coin flip
+						int rand = std::rand() % 2;	// 0-1
+						return rand;
+					}
+					return 1;
+				}
+			}
+		}
+	}
+
+	return -1;
 }

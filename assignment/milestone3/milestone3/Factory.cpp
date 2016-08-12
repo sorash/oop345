@@ -1,11 +1,12 @@
 #include "Factory.h"
+#include <iomanip>
 
-Factory::Factory(TaskManager & tm, OrderManager& om)
+Factory::Factory(TaskManager & tm, OrderManager& om, ItemManager& im)
 {
 	findSource(tm);
 	findAllJobs(om);
 	createAllMachines(tm);
-	timeLoop();
+	timeLoop(im);
 }
 
 void Factory::findSource(TaskManager& tm)
@@ -75,9 +76,9 @@ void Factory::createAllMachines(TaskManager& tm)
 	}
 }
 
-void Factory::timeLoop()
+void Factory::timeLoop(ItemManager& im)
 {
-	int time = 0;
+	int time = 0, jobIndex = 0;
 
 	// set current machine to source node
 	for (auto &mach : machines)	// again, pass as reference or pointer loses value
@@ -85,6 +86,15 @@ void Factory::timeLoop()
 		if (mach.isSource())
 		{
 			curMach = &mach;
+			
+			// loop through machine to find next machine
+			for (auto &next : machines)
+			{
+				// next machine should be the accept slot of current machine's task
+				if (mach.getTask().getAccept() == next.getTask().getName())
+					nextMach = &next;
+			}
+
 			break;
 		}
 	}
@@ -95,28 +105,87 @@ void Factory::timeLoop()
 		// loop until there are no jobs left
 		while (jobs.size() > 0)
 		{
-			std::cout << "Time loop time: " << time + 1 << std::endl;
+			std::cout << std::endl << "Time loop time: " << time + 1 << std::endl;
+			std::cout << "Current machine: " << curMach->getTask().getName() << std::endl;
 
-			// print out job information
-			std::cout << "Jobs to process:" << std::endl
-				<< '\t' << "Customer: " << jobs[time].getCustName() << std::endl
-				<< '\t' << "Product: " << jobs[time].getProdName() << std::endl
-				<< '\t' << "Items: " << std::endl;
-			for (auto item : jobs[time].getItemList())
-				std::cout << "\t\t" << item << std::endl;
+			// if reached a sink node
+			if(!curMach->getTask().hasAccept() && !curMach->getTask().hasReject())
+			{
+				// clear that job
+				jobs.erase(jobs.begin() + jobIndex);
+				jobIndex++;
+			}
 
-			// remove job
-			// TODO only remove if machine finished processing
-			jobs.pop_front();
+			if (jobs.size() > 0)
+			{
+				// print out job information
+				std::cout << "Jobs to process:" << std::endl
+					<< '\t' << "Customer: " << jobs[jobIndex].getCustName() << std::endl
+					<< '\t' << "Product: " << jobs[jobIndex].getProdName() << std::endl
+					<< '\t' << "Items: " << std::endl;
+				for (auto item : jobs[jobIndex].getItemList())
+					std::cout << "\t\t" << item << std::endl;
+
+				// process job
+				int result = curMach->process(jobs[jobIndex], im);
+				if (result == 1)
+				{
+					// loop through machine to find next machine
+					for (auto &next : machines)
+					{
+						// next machine should be the accept slot of current machine's task
+						if (curMach->getTask().getAccept() == next.getTask().getName())
+							nextMach = &next;
+					}
+
+					std::cout << "Coin flip passed!" << std::endl;
+
+					// move to next machine
+					moveToNextMachine();
+				}
+				else if (result == 0)
+				{
+					// loop through machine to find next machine
+					for (auto &next : machines)
+					{
+						// next machine should be the reject slot of current machine's task
+						if (curMach->getTask().getReject() == next.getTask().getName())
+							nextMach = &next;
+					}
+
+					std::cout << "Coin flip failed!" << std::endl;
+
+					// move to next machine
+					moveToNextMachine();
+				}
+				else
+				{
+					// move to next machine
+					moveToNextMachine();
+				}
+			}
 
 			// increment time
 			time++;
 		}
 
 		std::cout << std::endl
+			<< std::setw(29) << std::setfill('-') << '-' << std::endl
 			<< "No jobs left to process." << std::endl
-			<< "Factory simulation completed." << std::endl;
+			<< "Factory simulation completed." << std::endl
+			<< std::setw(29) << std::setfill('-') << '-' << std::setfill(' ')
+			<< std::endl << std::endl;
 	}
 	else
 		std::cout << "No source machine found, exiting simulation." << std::endl;
+}
+
+void Factory::moveToNextMachine()
+{
+	if (nextMach != nullptr)
+	{
+		std::cout << "Moving from machine " << curMach->getTask().getName() << " to " << nextMach->getTask().getName() << std::endl;
+		curMach = nextMach;
+		nextMach = nullptr;
+	}
 }

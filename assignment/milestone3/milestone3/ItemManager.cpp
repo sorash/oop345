@@ -147,3 +147,8 @@ bool ItemManager::validate()
 
 	return allValid;
 }
+
+std::vector<Item> ItemManager::getItems()
+{
+	return items;
+}
