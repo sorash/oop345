@@ -5,6 +5,7 @@ Factory::Factory(TaskManager & tm, OrderManager& om)
 	findSource(tm);
 	findAllJobs(om);
 	createAllMachines(tm);
+	timeLoop();
 }
 
 void Factory::findSource(TaskManager& tm)
@@ -73,4 +74,34 @@ void Factory::createAllMachines(TaskManager& tm)
 		if (tasks[i].getName() != sourceNode->getName())
 			machines.push_back(Machine(i, &tasks[i], false));
 	}
+}
+
+void Factory::timeLoop()
+{
+	int time = 0;
+
+	// loop until there are no jobs left
+	while (jobs.size() > 0)
+	{
+		std::cout << "Time loop time: " << time + 1 << std::endl;
+		
+		// print out job information
+		std::cout << "Jobs to process:" << std::endl
+			<< '\t' << "Customer: " << jobs[time].getCustName() << std::endl
+			<< '\t' << "Product: " << jobs[time].getProdName() << std::endl
+			<< '\t' << "Items: " << std::endl;
+		for (auto item : jobs[time].getItemList())
+			std::cout << "\t\t" << item << std::endl;
+
+		// remove job
+		// TODO only remove if machine finished processing
+		jobs.pop_front();
+
+		// increment time
+		time++;
+	}
+
+	std::cout << std::endl 
+		<< "No jobs left to process." << std::endl
+		<< "Factory simulation completed." << std::endl;
 }
