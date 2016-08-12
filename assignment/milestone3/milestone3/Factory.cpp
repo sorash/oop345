@@ -51,9 +51,8 @@ void Factory::findSource(TaskManager& tm)
 		}
 
 		// initialize a machine with that index and task
-		Machine srcMach = Machine(index, sourceNode, true);
-		srcMach.display(std::cout);
-		machines.push_back(srcMach);
+		machines.push_back(Machine(index, *sourceNode, true));
+		machines[0].display(std::cout);
 	}
 	else
 		std::cerr << "No source nodes found." << std::endl;
@@ -72,7 +71,7 @@ void Factory::createAllMachines(TaskManager& tm)
 	{
 		// add machines if the task found is not the source node previously found
 		if (tasks[i].getName() != sourceNode->getName())
-			machines.push_back(Machine(i, &tasks[i], false));
+			machines.push_back(Machine(i, tasks[i], false));
 	}
 }
 
@@ -80,28 +79,44 @@ void Factory::timeLoop()
 {
 	int time = 0;
 
-	// loop until there are no jobs left
-	while (jobs.size() > 0)
+	// set current machine to source node
+	for (auto &mach : machines)	// again, pass as reference or pointer loses value
 	{
-		std::cout << "Time loop time: " << time + 1 << std::endl;
-		
-		// print out job information
-		std::cout << "Jobs to process:" << std::endl
-			<< '\t' << "Customer: " << jobs[time].getCustName() << std::endl
-			<< '\t' << "Product: " << jobs[time].getProdName() << std::endl
-			<< '\t' << "Items: " << std::endl;
-		for (auto item : jobs[time].getItemList())
-			std::cout << "\t\t" << item << std::endl;
-
-		// remove job
-		// TODO only remove if machine finished processing
-		jobs.pop_front();
-
-		// increment time
-		time++;
+		if (mach.isSource())
+		{
+			curMach = &mach;
+			break;
+		}
 	}
 
-	std::cout << std::endl 
-		<< "No jobs left to process." << std::endl
-		<< "Factory simulation completed." << std::endl;
+	// make sure a source machine was created
+	if (curMach != nullptr)
+	{
+		// loop until there are no jobs left
+		while (jobs.size() > 0)
+		{
+			std::cout << "Time loop time: " << time + 1 << std::endl;
+
+			// print out job information
+			std::cout << "Jobs to process:" << std::endl
+				<< '\t' << "Customer: " << jobs[time].getCustName() << std::endl
+				<< '\t' << "Product: " << jobs[time].getProdName() << std::endl
+				<< '\t' << "Items: " << std::endl;
+			for (auto item : jobs[time].getItemList())
+				std::cout << "\t\t" << item << std::endl;
+
+			// remove job
+			// TODO only remove if machine finished processing
+			jobs.pop_front();
+
+			// increment time
+			time++;
+		}
+
+		std::cout << std::endl
+			<< "No jobs left to process." << std::endl
+			<< "Factory simulation completed." << std::endl;
+	}
+	else
+		std::cout << "No source machine found, exiting simulation." << std::endl;
 }

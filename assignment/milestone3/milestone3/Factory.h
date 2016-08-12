@@ -11,6 +11,7 @@ class Factory
 	std::vector<Machine> machines;
 	Task* sourceNode = nullptr;
 	std::deque<Order> jobs;
+	Machine* curMach;
 
 public:
 	Factory(TaskManager& tm, OrderManager& om);
